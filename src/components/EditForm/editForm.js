@@ -8,10 +8,12 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
+import { crudRecipe } from "../../redux/action/recipe";
 
 const EditForm = () => {
   const { id } = useParams();
-  const [recipeList, setRecipeList] = useOutletContext();
+  const [recipeList] = useOutletContext();
   const [recipe, setRecipe] = useState(null);
 
   const [invalidName, setInvalidName] = useState(false);
@@ -20,6 +22,7 @@ const EditForm = () => {
   const [invalidIngredientName, setInvalidIngredientName] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChangeName = (value) => {
     let cloneRecipe = _.cloneDeep(recipe);
@@ -125,7 +128,7 @@ const EditForm = () => {
       }
     });
 
-    setRecipeList(cloneList);
+    dispatch(crudRecipe(cloneList));
     navigate("/recipes");
   };
 

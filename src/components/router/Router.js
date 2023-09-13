@@ -1,12 +1,13 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "../../App";
-import Home from "../home/home";
+import Home from "../Home/home";
 import ShoppingList from "../ShoppingList/shoppingList";
 import AddForm from "../AddForm/addForm";
 import Detail from "../Detail/detail";
 import EditForm from "../EditForm/editForm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Recipes from "../Recipes/recipes";
 
 const router = createBrowserRouter([
   {
@@ -15,34 +16,30 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <Recipes />,
       },
       {
         path: "/recipes",
-        element: <Home />,
+        element: <Recipes />,
+        children: [
+          {
+            path: "",
+            element: <Home />,
+          },
+          {
+            path: "add-recipe",
+            element: <AddForm />,
+          },
+          {
+            path: "detail/:id",
+            element: <Detail />,
+          },
+          {
+            path: "edit-recipe/:id",
+            element: <EditForm />,
+          },
+        ],
       },
-      {
-        path: "/shopping-list",
-        element: <ShoppingList />,
-      },
-      {
-        path: "/add-recipe",
-        element: <AddForm />,
-      },
-      {
-        path: "/detail/:id",
-        element: <Detail />,
-      },
-      {
-        path: "/edit-recipe/:id",
-        element: <EditForm />,
-      },
-    ],
-  },
-  {
-    path: "/shopping-list",
-    element: <ShoppingList />,
-    children: [
       {
         path: "/shopping-list",
         element: <ShoppingList />,

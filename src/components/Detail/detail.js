@@ -10,10 +10,12 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { useDispatch } from "react-redux";
+import { crudRecipe } from "../../redux/action/recipe";
 
 const Detail = () => {
   const { id } = useParams();
-  const [recipeList, setRecipeList] = useOutletContext();
+  const [recipeList] = useOutletContext();
   const [recipe, setRecipe] = useState(null);
   const [show, setShow] = useState(false);
 
@@ -24,10 +26,12 @@ const Detail = () => {
   const handleShow = () => setShow(true);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleDelete = () => {
     let newList = recipeList.filter((item) => item.id !== id);
-    setRecipeList(newList);
+
+    dispatch(crudRecipe(newList));
     navigate("/recipes");
   };
 
@@ -42,10 +46,12 @@ const Detail = () => {
   const handleChangeSelect = (value) => {
     switch (value) {
       case "list":
-        // code block
+        navigate("/shopping-list", {
+          state: { list: recipe.ingredient },
+        });
         break;
       case "edit":
-        navigate(`/edit-recipe/${recipe.id}`);
+        navigate(`/recipes/edit-recipe/${recipe.id}`);
         break;
       case "delete":
         handleShow();
@@ -105,14 +111,17 @@ const Detail = () => {
             </Col>{" "}
             <Col>{recipe?.name ? recipe.name : ""}</Col>
           </Row>
-          <Row className="mb-3">
+          <Row className="mb-4">
             <Col className="col-3">
               <b>Description:</b>
             </Col>
             <Col> {recipe?.description ? recipe.description : ""}</Col>
           </Row>
-          <Row>
-            <Image src={recipe?.image ? recipe.image : ""} />
+          <Row style={{ justifyContent: "center" }}>
+            <Image
+              src={recipe?.image ? recipe.image : ""}
+              style={{ width: "70%" }}
+            />
           </Row>
         </Modal.Body>
         <Modal.Footer>

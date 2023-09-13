@@ -8,6 +8,8 @@ import Image from "react-bootstrap/Image";
 import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
 import { useOutletContext, useNavigate } from "react-router-dom";
+import { crudRecipe } from "../../redux/action/recipe";
+import { useDispatch } from "react-redux";
 
 const AddForm = () => {
   const [name, setName] = useState("");
@@ -19,8 +21,9 @@ const AddForm = () => {
   const [invalidDescription, setInvalidDescription] = useState(true);
   const [invalidIngredientName, setInvalidIngredientName] = useState(true);
 
-  const [recipeList, setRecipeList] = useOutletContext();
+  const [recipeList] = useOutletContext();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleImageError = (e) => {
     e.currentTarget.src = "";
@@ -90,7 +93,7 @@ const AddForm = () => {
       ingredient: ingredientList,
     };
 
-    setRecipeList([...recipeList, newRecipe]);
+    dispatch(crudRecipe([...recipeList, newRecipe]));
     navigate("/recipes");
   };
 

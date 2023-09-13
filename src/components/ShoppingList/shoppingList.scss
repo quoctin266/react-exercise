@@ -1,0 +1,20 @@
+.shopping-container {
+    margin-top: 3%;
+
+    .ingredient-form {
+        margin-bottom: 3%;
+    }
+
+    .ingredient-list {
+        margin-top: 3%;
+        font-size : 1.2em;
+
+        .ingredient {
+            cursor: pointer;
+
+            &:hover {
+                background-color: azure
+            }
+        }
+    }
+}

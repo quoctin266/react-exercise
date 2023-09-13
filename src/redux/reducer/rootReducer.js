@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 
 import themeReducer from "./themeReducer";
-import authReducer from "./authReducer";
+import recipeReducer from "./recipeReducer";
 
 const rootReducer = combineReducers({
   theme: themeReducer,
-  auth: authReducer,
+  recipe: recipeReducer,
 });
 
 export default rootReducer;
