@@ -1,0 +1,23 @@
+.detail-container {
+    .name {
+        font-size  : 2em;
+        font-weight: 500;
+        margin-top : 5%;
+    }
+
+    .manage-recipe {
+        width           : 35%;
+        margin-top      : 3%;
+        background-color: cornflowerblue;
+        color           : aliceblue;
+
+        option {
+            background-color: white;
+            color           : black;
+        }
+    }
+
+    .description {
+        margin: 2% 0;
+    }
+}

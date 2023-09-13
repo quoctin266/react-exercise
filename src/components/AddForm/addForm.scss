@@ -1,0 +1,26 @@
+.form-container {
+    .add-form {
+        margin-top   : 3%;
+        margin-bottom: 6%;
+
+        img {
+            width        : 40%;
+            margin-bottom: 3%;
+        }
+
+        .error {
+            display: none;
+        }
+
+        .success {
+            display: block;
+        }
+
+        .ingredient {
+            .del-btn {
+                width: 50px;
+            }
+        }
+    }
+
+}
